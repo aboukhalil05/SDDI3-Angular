@@ -1,0 +1,20 @@
+.div {
+    margin: 50px;
+    background-color:chartreuse;
+    text-align: center;
+}
+.label {
+    font-size: 45px;
+    font-style: italic;
+}
+.btn {
+    width: 75px;
+    height: 25px;
+    background-color: blue;
+}
+
+
+.red {color: red;}
+.green {color: green;}
+.blue {color: blue;}
+.yellow {color: yellow;}  

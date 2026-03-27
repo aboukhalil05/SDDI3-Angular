@@ -1,0 +1,20 @@
+
+html:   <div class="div">
+  <div class="div">
+     <label class ="label">calculs</label>
+
+     <div>
+        <input type="number" class="input"[(ngModel)]="op1"/><br/>
+         <input type="number" class="input"[(ngModel)]="op2"/><br/>
+         <div class="div">
+            <button id="btn" (click)="add()">+</button>
+            <button id="btn" (click)="sub()">-</button>
+            <button id="btn" (click)="mul()">*</button>
+            <button id="btn" (click)="div()">/</button>
+         </div>
+         <div>
+            <label class ="label">{{res}}</label>
+         </div>
+     </div>
+  </div>
+</div>

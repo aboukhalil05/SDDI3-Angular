@@ -1,0 +1,32 @@
+<div class="jeu-container">
+  <h2>Jeu du Nombre Secret</h2>
+  
+  <div class="game-info">
+    <p>Devinez un nombre entre 1 et 100</p>
+    <p>Tentatives restantes: <strong>{{maxTentatives - compteurTentatives}}</strong> / {{maxTentatives}}</p>
+  </div>
+
+  <div class="input-section" *ngIf="!jeuTermine">
+    <input 
+      type="number" 
+      [(ngModel)]="nombreSaisi" 
+      placeholder="Entrez un nombre"
+      [disabled]="jeuTermine"
+    />
+    <button (click)="verifierNombre()" [disabled]="jeuTermine">
+      Vérifier
+    </button>
+  </div>
+
+  <div *ngIf="message" [class]="'message ' + messageClass">
+    {{message}}
+  </div>
+
+  <div class="stats" *ngIf="compteurTentatives > 0">
+    <p>Tentatives utilisées: {{compteurTentatives}}</p>
+  </div>
+
+  <button *ngIf="jeuTermine" (click)="recommencer()" class="btn-restart">
+    Recommencer
+  </button>
+</div>

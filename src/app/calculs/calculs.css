@@ -1,0 +1,14 @@
+.div{
+    position: relative;
+
+    margin: 20px;
+    text-align: center;
+    align-items: center;
+}
+
+.label {
+    margin: 20px;
+    color: blue;
+    font-size: 45px;
+    font-style: italic;
+}

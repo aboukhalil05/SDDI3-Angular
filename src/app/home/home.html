@@ -1,0 +1,60 @@
+<div class="div">
+   <!-- 
+    <label class="label">I'am home component!!!!</label><br/>
+    <button class="btn">Test!!!</button>
+
+<ul>
+    <li> {{p.num}}</li>
+    <li> {{p.nom}}</li>
+    <li> {{p.prenom}}</li>
+</ul>  
+
+<p>{{dirbonjour()}}</p> 
+<br>
+
+<ul>
+    <li *ngIf="tab[0]%2 !=0 ; then si else sinon"></li>
+    <ng-template #si>
+        {{tab[0]}} est impair
+    </ng-template>
+    <ng-template #sinon>
+        <li>{{tab[0]}} est pair</li>
+    </ng-template>
+    </ul>
+
+    <ul>
+        <li *ngFor="let elt of tab ; let i=index ; let isFirst=first">
+             {{i}} : {{elt}} : {{isFirst}}
+        </li>
+    </ul>
+
+
+    <ul>
+        <ng-container *ngFor="let elt of moyenne">
+        <ng-container [ngSwitch]="true">
+            <li *ngSwitchCase="elt>=0 && elt<10">{{elt}} : echec</li>
+            <li *ngSwitchCase="elt>=10 && elt<12">{{elt}} : Passable</li>
+            <li *ngSwitchCase="elt>=12 && elt<14">{{elt}} : Assez Bien</li>
+            <li *ngSwitchCase="elt>=14 && elt<16">{{elt}} : Bien</li>
+            <li *ngSwitchDefault>{{elt}} : Excellent</li>
+        </ng-container>
+        </ng-container>
+    </ul>
+-->
+<div>
+    <h3>Directives d'attribut</h3>
+    <span [class.red]="true">Attribut prend la couleur rouge</span><br />
+    <span [ngClass]="{'blue':true}">Attribut Change coleur en utilisant NgClass</span><br />
+    <span [ngStyle]="{'font-size':'14px','color':'green'}">Attribut change Style en utilisant NgStyle</span>
+    <br /><br />
+    <span [class.cyan]="AfficheColor">Attribut prend la couleur en utilisant la variable afficheColor</span><br />
+    <span [ngClass]="{'brown':AfficheColor}">Attribut Change coleur en utilisant NgClass</span><br />
+    <input type="button" value="Changer Couleur" (click)="changeColor()" />
+    <br /><br />
+    <span [class.cyan]="AfficheColor">Attribut Change couleur via la variable afficheColor </span><br />
+    <span [ngClass]="{'cyan':AfficheColor, 'red' : !AfficheColor}">Attribut Change coleur en utilisant NgClass</span><br />
+    <br />
+</div>
+
+</div>
+  
