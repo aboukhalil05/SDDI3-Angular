@@ -26,4 +26,14 @@ export class Home {
     this.AfficheColor = !this.AfficheColor;
   }
 
+
+  public dateAujourd: Date = new Date();
+  public nombre: number = 0;
+  public message: string = "";
+constructor() {}
+ngOnInit(): void {
+  this.dateAujourd = new Date();
+  this.nombre = 1949;
+  this.message = "Dima Raja Rmwww9 !";
+}
 }

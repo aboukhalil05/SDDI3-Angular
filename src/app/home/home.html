@@ -40,7 +40,9 @@
         </ng-container>
         </ng-container>
     </ul>
--->
+
+
+
 <div>
     <h3>Directives d'attribut</h3>
     <span [class.red]="true">Attribut prend la couleur rouge</span><br />
@@ -56,5 +58,80 @@
     <br />
 </div>
 
+
+
+
+<div>
+    <h1 [class.red]="true"> Démonstration des pipes basiques </h1>
+    <h2 [class.blue]="true">Pipes Date </h2>
+    <div [ngStyle]="{'text-size':'14px', 'color':'green'}">
+    Date complet: {{ dateAujourd }} <br/>
+    Short Date: {{ dateAujourd | date: 'shortDate' }}<br/>
+    Medium Date : {{ dateAujourd | date:'mediumDate' }}<br />
+    Full Date : {{ dateAujourd | date:'fullDate' }}<br />
+    Time : {{ dateAujourd | date:'HH:MM' }}<br />
+    Time : {{ dateAujourd | date:'hh:mm:ss a' }}<br />
+    Time : {{ dateAujourd | date:'hh:mm:ss p' }}<br />
+    </div>
+
+</div>
+
+
+
+<div>
+    <h1 [class.red]="true"> Démonstration des pipes basiques </h1>
+    <h2 [class.blue]="true">Pipes Number </h2>
+    <div [ngStyle]="{'text-size':'14px', 'color':'green'}">
+
+        Nombre non-formaté : {{nombre}}<br />
+        2 nombres Decimales après virgule : {{nombre |number:'2.2-2'}}
+
+    </div>
+
+</div>
+
+
+
+<div>
+    <h1 [class.red]="true"> Démonstration des pipes basiques </h1>
+    <h2 [class.blue]="true">Pipes Devise </h2>
+    <div [ngStyle]="{'text-size':'14px', 'color':'green'}">
+
+        nombre non formaté : {{nombre}}<br />
+        USD Doller($) : {{nombre |currency:'USD':true}}<br />
+        USD Doller : {{nombre |currency:'USD':false}}<br />
+
+    </div>
+
+</div>
+
+
+
+<div>
+    <h1 [class.red]="true"> Démonstration des pipes basiques </h1>
+    <h2 [class.blue]="true">Pipes Chaîne de caractères </h2>
+    <div [ngStyle]="{'text-size':'14px', 'color':'green'}">
+
+    message brute: {{message}} <br/>
+    Lettres en Majuscule: {{message | uppercase}}<br/>
+    Lettres en miniscule: {{message | lowercase}}<br/>
+
+    </div>
+
+</div>
+-->
+
+
+
+<div>
+    <h1 [class.red]="true"> Démonstration des pipes basiques </h1>
+    <h2 [class.blue]="true">Pipes Pourcentage </h2>
+    <div [ngStyle]="{'text-size':'14px', 'color':'green'}">
+      nombre non formaté : {{nombre}}<br />
+      2 Place Formatting : {{nombre | percent :'.2'}}<br />
+
+    </div>
+
+</div>
 </div>
   
