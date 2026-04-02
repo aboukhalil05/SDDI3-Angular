@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class Jeu {
-  nombreSecret: number = Math.floor(Math.random() * 100) + 1;
+  nombreSecret: number = Math.floor(Math.random() * 20) + 1;
   nombreSaisi: number | null = null;
   compteurTentatives: number = 0;
   maxTentatives: number = 5;
@@ -49,7 +49,7 @@ export class Jeu {
   }
 
   recommencer(): void {
-    this.nombreSecret = Math.floor(Math.random() * 100) + 1;
+    this.nombreSecret = Math.floor(Math.random() * 20) + 1;
     this.nombreSaisi = null;
     this.compteurTentatives = 0;
     this.message = '';

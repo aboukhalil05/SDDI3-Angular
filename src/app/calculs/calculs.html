@@ -1,20 +1,52 @@
 
 html:   <div class="div">
-  <div class="div">
-     <label class ="label">calculs</label>
-
-     <div>
-        <input type="number" class="input"[(ngModel)]="op1"/><br/>
-         <input type="number" class="input"[(ngModel)]="op2"/><br/>
-         <div class="div">
-            <button id="btn" (click)="add()">+</button>
-            <button id="btn" (click)="sub()">-</button>
-            <button id="btn" (click)="mul()">*</button>
-            <button id="btn" (click)="div()">/</button>
-         </div>
-         <div>
-            <label class ="label">{{res}}</label>
-         </div>
-     </div>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title text-center">Calculatrice</h3>
+          </div>
+          <div class="panel-body">
+            <form>
+              <div class="form-group">
+                <label for="op1">Nombre 1</label>
+                <input type="number" class="form-control" id="op1" [(ngModel)]="op1" name="op1" placeholder="Entrez le premier nombre" />
+              </div>
+              <div class="form-group">
+                <label for="op2">Nombre 2</label>
+                <input type="number" class="form-control" id="op2" [(ngModel)]="op2" name="op2" placeholder="Entrez le deuxième nombre" />
+              </div>
+              <div class="btn-group btn-group-justified" role="group">
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-success" (click)="add()">
+                    <span class="glyphicon glyphicon-plus"></span> Addition
+                  </button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-danger" (click)="sub()">
+                    <span class="glyphicon glyphicon-minus"></span> Soustraction
+                  </button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-info" (click)="mul()">
+                    <span class="glyphicon glyphicon-asterisk"></span> Multiplication
+                  </button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-warning" (click)="div()">
+                    <span class="glyphicon glyphicon-remove"></span> Division
+                  </button>
+                </div>
+              </div>
+            </form>
+            <div class="alert alert-info text-center mt-4">
+              <h4>Résultat</h4>
+              <h2 class="alert-heading">{{ res }}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
