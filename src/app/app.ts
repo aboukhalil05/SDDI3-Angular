@@ -8,7 +8,7 @@ import { PipesDemoComponent } from './pipes/pipes-demo';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Home, Calculs, Jeu, FormsModule, PipesDemoComponent],
+  imports: [RouterOutlet, ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

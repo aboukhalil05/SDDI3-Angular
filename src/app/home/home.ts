@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { Personne } from '../entities/personne';
-
 
 @Component({
   selector: 'app-home',
@@ -10,7 +10,7 @@ import { Personne } from '../entities/personne';
   styleUrls: ['./home.css'],
 })
 
-export class Home {
+export class Home implements OnInit {
   p: Personne = new Personne(1, "Mohammed", "Ali");
 
   dirbonjour(): string {
@@ -30,10 +30,23 @@ export class Home {
   public dateAujourd: Date = new Date();
   public nombre: number = 0;
   public message: string = "";
-constructor() {}
 ngOnInit(): void {
   this.dateAujourd = new Date();
   this.nombre = 1949;
   this.message = "Dima Raja Rmwww9 !";
+}
+
+constructor(private router: Router) {}
+
+gotocalculs(): void {
+  this.router.navigate(['calculs']);
+}
+
+gotojeu(): void {
+  this.router.navigate(['jeu']);
+}
+
+gotopipes(): void {
+  this.router.navigate(['pipes']);
 }
 }
