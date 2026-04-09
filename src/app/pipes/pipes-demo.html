@@ -1,40 +1,65 @@
-<div class="container">
-  <h2>Pipes - Solutions TP</h2>
+<div class="pipes-page">
 
-  <!-- TP 1: Count Character -->
-  <div class="tp-section tp1">
-    <h3>TP 1 - Compter l'occurrence d'un caractère</h3>
-    <div class="form-group">
-      <label>Chaîne: <input type="text" [(ngModel)]="countCharInput" placeholder="Bonjour"></label>
-      <label>Caractère: <input type="text" [(ngModel)]="charToCount" placeholder="o" maxlength="1"></label>
-    </div>
-    <div class="result">
-      <strong>Résultat:</strong>
-      <span>{{ countCharInput() | countChar: charToCount() }}</span>
-    </div>
+  <!-- Page header -->
+  <div class="pipes-header">
+    <span class="pipes-badge">🔧 Travaux Pratiques</span>
+    <h2 class="pipes-title">Pipes — Solutions TP</h2>
+    <p class="pipes-subtitle">Démonstration des pipes Angular personnalisés</p>
   </div>
 
-  <!-- TP 2: Reverse String -->
-  <div class="tp-section tp2">
-    <h3>TP 2 - Inverser une chaîne de caractères</h3>
-    <div class="form-group">
-      <label>Chaîne: <input type="text" [(ngModel)]="reverseInput" placeholder="Bonjour"></label>
-    </div>
-    <div class="result">
-      <strong>Inversée:</strong>
-      <span>{{ reverseInput() | reverseStr }}</span>
-    </div>
-  </div>
+  <div class="container">
 
-  <!-- TP 3: Sum Digits -->
-  <div class="tp-section tp3">
-    <h3>TP 3 - Somme des chiffres d'un nombre</h3>
-    <div class="form-group">
-      <label>Nombre: <input type="text" [(ngModel)]="sumDigitsInput" placeholder="4576"></label>
+    <!-- TP 1: Count Character -->
+    <div class="tp-section tp1">
+      <div class="tp-label">TP 1</div>
+      <h3>Compter l'occurrence d'un caractère</h3>
+      <div class="form-group">
+        <label>
+          <span class="field-label">Chaîne</span>
+          <input type="text" [(ngModel)]="countCharInput" placeholder="Bonjour">
+        </label>
+        <label>
+          <span class="field-label">Caractère</span>
+          <input type="text" [(ngModel)]="charToCount" placeholder="o" maxlength="1">
+        </label>
+      </div>
+      <div class="result">
+        <span class="result-label">Résultat</span>
+        <span class="result-value">{{ countCharInput() | countChar: charToCount() }}</span>
+      </div>
     </div>
-    <div class="result">
-      <strong>Somme:</strong>
-      <span>{{ sumDigitsInput() | sumDigits }}</span>
+
+    <!-- TP 2: Reverse String -->
+    <div class="tp-section tp2">
+      <div class="tp-label">TP 2</div>
+      <h3>Inverser une chaîne de caractères</h3>
+      <div class="form-group">
+        <label>
+          <span class="field-label">Chaîne</span>
+          <input type="text" [(ngModel)]="reverseInput" placeholder="Bonjour">
+        </label>
+      </div>
+      <div class="result">
+        <span class="result-label">Inversée</span>
+        <span class="result-value">{{ reverseInput() | reverseStr }}</span>
+      </div>
     </div>
+
+    <!-- TP 3: Sum Digits -->
+    <div class="tp-section tp3">
+      <div class="tp-label">TP 3</div>
+      <h3>Somme des chiffres d'un nombre</h3>
+      <div class="form-group">
+        <label>
+          <span class="field-label">Nombre</span>
+          <input type="text" [(ngModel)]="sumDigitsInput" placeholder="4576">
+        </label>
+      </div>
+      <div class="result">
+        <span class="result-label">Somme</span>
+        <span class="result-value">{{ sumDigitsInput() | sumDigits }}</span>
+      </div>
+    </div>
+
   </div>
 </div>

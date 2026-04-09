@@ -1,167 +1,427 @@
-.jeu-container {
-  max-width: 420px;
-  margin: 40px auto;
-  padding: 32px;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafb 100%);
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  transition: box-shadow 0.3s ease;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
+/* ======================================================
+   PAGE — full screen, same dark animated background
+   ====================================================== */
+.jeu-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a1a2e, #16213e, #0f3460);
+  background-size: 400% 400%;
+  animation: bgShift 14s ease infinite;
+  position: relative;
+  overflow: hidden;
 }
 
-.jeu-container:hover {
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+.jeu-page::before,
+.jeu-page::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
 }
 
-h2 {
-  text-align: center;
-  color: #1a202c;
-  margin: 0 0 28px 0;
-  font-size: 24px;
+.jeu-page::before {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(139, 92, 246, .35), transparent 70%);
+  top: -100px;
+  left: -100px;
+}
+
+.jeu-page::after {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(56, 189, 248, .3), transparent 70%);
+  bottom: -80px;
+  right: -80px;
+}
+
+@keyframes bgShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ======================================================
+   CARD — glassmorphism panel
+   ====================================================== */
+.jeu-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 440px;
+  background: rgba(255, 255, 255, .07);
+  border: 1px solid rgba(255, 255, 255, .14);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border-radius: 28px;
+  padding: 2.5rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, .55),
+    inset 0 1px 0 rgba(255, 255, 255, .1);
+  animation: cardIn 0.7s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ======================================================
+   HEADER
+   ====================================================== */
+.jeu-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.jeu-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(139, 92, 246, .2);
+  border: 1px solid rgba(139, 92, 246, .45);
+  border-radius: 50px;
+  padding: 0.3rem 1rem;
+  font-size: 0.73rem;
   font-weight: 600;
-  letter-spacing: -0.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c4b5fd;
 }
 
-.game-info {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 28px;
+.jeu-title {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin: 0;
+  background: linear-gradient(135deg, #fff 0%, #c4b5fd 45%, #38bdf8 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
   text-align: center;
-  color: white;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
 
-.game-info p {
-  margin: 8px 0;
-  font-size: 15px;
-  font-weight: 500;
+.jeu-subtitle {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, .5);
+  text-align: center;
+  margin: 0;
 }
 
-.game-info strong {
-  font-weight: 700;
-  font-size: 16px;
+.jeu-subtitle strong {
+  color: rgba(255, 255, 255, .8);
 }
 
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* ======================================================
+   GAME INFO — attempts progress
+   ====================================================== */
+.game-info {
+  background: rgba(139, 92, 246, .12);
+  border: 1px solid rgba(139, 92, 246, .25);
+  border-radius: 18px;
+  padding: 1.2rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.attempts-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.attempts-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .45);
+}
+
+.attempts-count {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
+
+.attempts-total {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, .4);
+}
+
+/* progress bar */
+.attempts-bar {
+  height: 6px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, .1);
+  overflow: hidden;
+}
+
+.attempts-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #8b5cf6, #38bdf8);
+  transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* dots */
+.attempts-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.dot-left {
+  background: rgba(139, 92, 246, .5);
+  box-shadow: 0 0 8px rgba(139, 92, 246, .5);
+}
+
+.dot-used {
+  background: rgba(255, 255, 255, .15);
+  box-shadow: none;
+}
+
+/* ======================================================
+   INPUT SECTION
+   ====================================================== */
 .input-section {
   display: flex;
-  gap: 12px;
-  margin-bottom: 28px;
+  gap: 10px;
 }
 
 input {
   flex: 1;
-  padding: 12px 16px;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  background-color: #f8fafc;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, .07) !important;
+  border: 1px solid rgba(255, 255, 255, .14) !important;
+  border-radius: 14px;
+  color: #fff !important;
+  font-size: 1.4rem;
+  font-weight: 300;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, .2);
 }
 
 input:focus {
-  outline: none;
-  border-color: #667eea;
-  background-color: white;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: rgba(139, 92, 246, .7) !important;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, .2) !important;
 }
 
 input:disabled {
-  background-color: #f0f0f0;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
 button {
-  padding: 12px 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 22px;
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 14px;
   cursor: pointer;
-  font-size: 15px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.03em;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, .4);
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, .2) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.45s ease;
+}
+
+button:hover:not(:disabled)::after {
+  transform: translateX(100%);
 }
 
 button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 28px rgba(124, 58, 237, .55);
 }
 
 button:active:not(:disabled) {
-  transform: translateY(0);
+  transform: scale(0.97);
 }
 
 button:disabled {
-  background: linear-gradient(135deg, #cbd5e0 0%, #a0aec0 100%);
-  cursor: not-allowed;
+  background: linear-gradient(135deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .05));
   box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
+.btn-icon {
+  font-size: 1rem;
+}
+
+/* ======================================================
+   MESSAGE
+   ====================================================== */
 .message {
-  padding: 16px;
-  margin-bottom: 24px;
-  border-radius: 10px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-radius: 14px;
   font-weight: 600;
-  font-size: 15px;
-  animation: slideIn 0.3s ease;
+  font-size: 0.95rem;
+  animation: msgIn 0.35s cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 
-@keyframes slideIn {
+.msg-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+@keyframes msgIn {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px) scale(0.97);
   }
+
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
 .message.correct {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: white;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  background: rgba(52, 199, 89, .18);
+  border: 1px solid rgba(52, 199, 89, .4);
+  color: #6effa0;
+  box-shadow: 0 4px 20px rgba(52, 199, 89, .2);
 }
 
 .message.incorrect {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-  color: white;
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  background: rgba(255, 69, 58, .15);
+  border: 1px solid rgba(255, 69, 58, .35);
+  color: #ff8f88;
+  box-shadow: 0 4px 20px rgba(255, 69, 58, .15);
 }
 
 .message.gameover {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  color: white;
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+  background: rgba(255, 159, 10, .15);
+  border: 1px solid rgba(255, 159, 10, .35);
+  color: #ffcf72;
+  box-shadow: 0 4px 20px rgba(255, 159, 10, .2);
 }
 
 .message.warning {
-  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-  color: white;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  background: rgba(99, 102, 241, .18);
+  border: 1px solid rgba(99, 102, 241, .4);
+  color: #a5b4fc;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, .2);
 }
 
+/* ======================================================
+   STATS
+   ====================================================== */
 .stats {
   text-align: center;
-  font-size: 14px;
-  color: #64748b;
-  margin-bottom: 24px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, .4);
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
+.stats strong {
+  color: rgba(255, 255, 255, .75);
+}
+
+.stats-icon {
+  font-size: 0.9rem;
+}
+
+/* ======================================================
+   RESTART BUTTON
+   ====================================================== */
 .btn-restart {
   width: 100%;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  font-size: 16px;
-  padding: 14px;
-  font-weight: 600;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  justify-content: center;
+  background: linear-gradient(135deg, #059669, #0d9488) !important;
+  box-shadow: 0 4px 20px rgba(5, 150, 105, .4) !important;
+  border-radius: 16px !important;
+  padding: 15px !important;
+  font-size: 1rem !important;
 }
 
-.btn-restart:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+.btn-restart:hover:not(:disabled) {
+  box-shadow: 0 8px 30px rgba(5, 150, 105, .6) !important;
 }

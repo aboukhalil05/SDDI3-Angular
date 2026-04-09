@@ -1,88 +1,332 @@
-/* Calculatrice Styles */
-.panel {
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+@import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600;700&family=Inter:wght@300;400;600;700;900&display=swap');
+
+/* ======================================================
+   PAGE WRAPPER — full screen, same dark animated bg
+   ====================================================== */
+.calc-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a1a2e, #16213e, #0f3460);
+  background-size: 400% 400%;
+  animation: bgShift 14s ease infinite;
+  position: relative;
+  overflow: hidden;
 }
 
-.panel-primary {
-  border-color: #007bff;
+/* floating blur orbs */
+.calc-page::before,
+.calc-page::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
 }
 
-.panel-heading {
-  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-  border-color: #007bff;
-  color: white;
+.calc-page::before {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(139, 92, 246, .35), transparent 70%);
+  top: -80px;
+  left: -80px;
 }
 
-.panel-title {
+.calc-page::after {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(56, 189, 248, .3), transparent 70%);
+  bottom: -60px;
+  right: -60px;
+}
+
+@keyframes bgShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ======================================================
+   CALCULATOR SHELL — iOS phone body
+   ====================================================== */
+.calc-shell {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 380px;
+  background: #1c1c1e;
+  /* iOS dark background */
+  border-radius: 44px;
+  padding: 0 0 28px 0;
+  box-shadow:
+    0 0 0 10px #2c2c2e,
+    /* outer bezel */
+    0 0 0 11px rgba(255, 255, 255, .05),
+    0 40px 80px rgba(0, 0, 0, .7),
+    0 0 60px rgba(139, 92, 246, .2);
+  animation: shellIn 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
+  overflow: hidden;
+}
+
+@keyframes shellIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ======================================================
+   HEADER — macOS-style traffic lights
+   ====================================================== */
+.calc-header {
+  display: flex;
+  align-items: center;
+  padding: 18px 22px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, .06);
+  background: #2c2c2e;
+  gap: 8px;
+  position: relative;
+}
+
+.calc-header-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot-red {
+  background: #ff5f57;
+  box-shadow: 0 0 6px #ff5f57;
+}
+
+.dot-yellow {
+  background: #febc2e;
+  box-shadow: 0 0 6px #febc2e;
+}
+
+.dot-green {
+  background: #28c840;
+  box-shadow: 0 0 6px #28c840;
+}
+
+.calc-header-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 1px;
+  color: rgba(255, 255, 255, .75);
+  letter-spacing: 0.04em;
 }
 
-.panel-body {
-  padding: 25px;
+/* ======================================================
+   SCREEN — dark panel with inputs + result
+   ====================================================== */
+.calc-screen {
+  background: #000;
+  padding: 22px 24px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, .06);
+}
+
+/* ---- Input groups ---- */
+.calc-screen-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
 .form-group {
-  margin-bottom: 18px;
+  margin: 0;
 }
 
-.form-group label {
+.calc-label {
+  display: block;
+  font-size: 0.7rem;
   font-weight: 600;
-  color: #333;
-  margin-bottom: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .4);
+  margin-bottom: 6px;
 }
 
-.form-control {
-  border-radius: 4px;
-  border: 1px solid #ddd;
-  padding: 10px 12px;
-  font-size: 14px;
-  transition: border-color 0.3s ease;
+.calc-input,
+.form-control.calc-input {
+  width: 100%;
+  background: rgba(255, 255, 255, .06) !important;
+  border: 1px solid rgba(255, 255, 255, .1) !important;
+  border-radius: 14px !important;
+  color: #fff !important;
+  font-size: 1.3rem !important;
+  font-weight: 300 !important;
+  padding: 10px 16px !important;
+  text-align: right;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  box-sizing: border-box;
 }
 
-.form-control:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+.calc-input::-webkit-outer-spin-button,
+.calc-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.calc-input::placeholder {
+  color: rgba(255, 255, 255, .2);
+}
+
+.calc-input:focus,
+.form-control.calc-input:focus {
+  border-color: rgba(139, 92, 246, .7) !important;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, .2) !important;
+}
+
+/* ---- Result display (big iOS number) ---- */
+.calc-result-display {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 10px 4px 4px;
+  border-top: 1px solid rgba(255, 255, 255, .05);
+}
+
+.calc-result-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .3);
+  margin-bottom: 4px;
+}
+
+.calc-result-value {
+  font-size: 3rem;
+  font-weight: 200;
+  color: #fff;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  min-height: 56px;
+  word-break: break-all;
+  text-align: right;
+  transition: opacity 0.2s ease;
+}
+
+/* ======================================================
+   KEYPAD — 2×2 operation grid
+   ====================================================== */
+.calc-keypad {
+  padding: 20px 16px 0;
 }
 
 .btn-group-justified {
-  margin-top: 20px;
-  gap: 8px;
-}
-
-.btn-group-justified .btn {
-  border-radius: 4px;
-  font-weight: 600;
-  padding: 10px;
-  transition: all 0.3s ease;
-}
-
-.btn-group-justified .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.alert-info {
-  background-color: #e7f3ff;
-  border-color: #b3d9ff;
-  border-radius: 6px;
-  margin-top: 25px;
-}
-
-.alert-info h2 {
-  font-size: 42px;
-  font-weight: 700;
-  color: #007bff;
-  margin: 10px 0 0 0;
-}
-
-.alert-info h4 {
-  color: #666;
-  font-size: 14px;
-  font-weight: 600;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
   margin: 0;
+}
+
+.btn-group-justified .btn-group {
+  display: contents;
+}
+
+/* ---- Base op button ---- */
+.calc-op-btn,
+.btn.calc-op-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 78px;
+  border-radius: 22px !important;
+  border: none !important;
+  cursor: pointer;
+  transition:
+    transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.18s ease,
+    filter 0.18s ease;
+  position: relative;
+  overflow: hidden;
+  outline: none;
+}
+
+/* shine overlay */
+.calc-op-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, .12), transparent);
+  border-radius: 22px 22px 50% 50%;
+  pointer-events: none;
+}
+
+.calc-op-btn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.15);
+}
+
+.calc-op-btn:active {
+  transform: scale(0.95);
+  filter: brightness(0.9);
+}
+
+/* Icon & label inside button */
+.op-icon {
+  font-size: 1.6rem;
+  font-weight: 200;
+  line-height: 1;
+  color: #fff;
+}
+
+.op-label {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, .8);
+}
+
+/* iOS operator colors */
+.btn-success.calc-op-btn {
+  background: linear-gradient(145deg, #34c759, #28a048) !important;
+  box-shadow: 0 6px 20px rgba(52, 199, 89, .4);
+}
+
+.btn-danger.calc-op-btn {
+  background: linear-gradient(145deg, #ff453a, #c0392b) !important;
+  box-shadow: 0 6px 20px rgba(255, 69, 58, .4);
+}
+
+.btn-info.calc-op-btn {
+  background: linear-gradient(145deg, #0a84ff, #0056d6) !important;
+  box-shadow: 0 6px 20px rgba(10, 132, 255, .4);
+}
+
+.btn-warning.calc-op-btn {
+  background: linear-gradient(145deg, #ff9f0a, #d4790a) !important;
+  box-shadow: 0 6px 20px rgba(255, 159, 10, .4);
 }

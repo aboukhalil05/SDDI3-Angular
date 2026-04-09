@@ -1,5 +1,5 @@
 <div class="div">
-   <!-- 
+    <!-- 
     <label class="label">I'am home component!!!!</label><br/>
     <button class="btn">Test!!!</button>
 
@@ -137,12 +137,18 @@
 -->
 
 </div>
-  
+
 <div class="home-container">
-  <h1 class="title">Les TP de Angular</h1>
-  <div class="buttons-container">
-    <button (click)="gotocalculs()" class="btn-modern btn-primary-modern">Calculs</button>
-    <button (click)="gotojeu()" class="btn-modern btn-success-modern">Jeu</button>
-    <button (click)="gotopipes()" class="btn-modern btn-info-modern">Pipes Demo</button>
-  </div>
+    <div class="home-card">
+        <span class="tp-badge">Travaux Pratiques</span>
+        <h1 class="title">Les TP de Angular</h1>
+        <hr class="home-divider" />
+        <p class="home-subtitle">Explorez les concepts fondamentaux d'Angular à travers des exercices pratiques
+            interactifs.</p>
+        <div class="buttons-container">
+            <button (click)="gotocalculs()" class="btn-modern btn-primary-modern">⚡ Calculs</button>
+            <button (click)="gotojeu()" class="btn-modern btn-success-modern">🎮 Jeu</button>
+            <button (click)="gotopipes()" class="btn-modern btn-info-modern">🔧 Pipes Demo</button>
+        </div>
+    </div>
 </div>

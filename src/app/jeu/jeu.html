@@ -1,32 +1,61 @@
-<div class="jeu-container">
-  <h2>Jeu du Nombre Secret</h2>
-  
-  <div class="game-info">
-    <p>Devinez un nombre entre 1 et 20</p>
-    <p>Tentatives restantes: <strong>{{maxTentatives - compteurTentatives}}</strong> / {{maxTentatives}}</p>
-  </div>
+<div class="jeu-page">
+  <div class="jeu-card">
 
-  <div class="input-section" *ngIf="!jeuTermine">
-    <input 
-      type="number" 
-      [(ngModel)]="nombreSaisi" 
-      placeholder="Entrez un nombre"
-      [disabled]="jeuTermine"
-    />
-    <button (click)="verifierNombre()" [disabled]="jeuTermine">
-      Vérifier
+    <!-- Header -->
+    <div class="jeu-header">
+      <span class="jeu-badge">🎮 Jeu Interactif</span>
+      <h2 class="jeu-title">Nombre Secret</h2>
+      <p class="jeu-subtitle">Devinez un nombre entre <strong>1</strong> et <strong>20</strong></p>
+    </div>
+
+    <!-- Attempts bar -->
+    <div class="game-info">
+      <div class="attempts-row">
+        <span class="attempts-label">Tentatives restantes</span>
+        <span class="attempts-count">{{maxTentatives - compteurTentatives}}<span class="attempts-total"> /
+            {{maxTentatives}}</span></span>
+      </div>
+      <div class="attempts-bar">
+        <div class="attempts-bar-fill" [style.width.%]="((maxTentatives - compteurTentatives) / maxTentatives) * 100">
+        </div>
+      </div>
+      <div class="attempts-dots">
+        <span *ngFor="let i of [1,2,3,4,5]" class="dot" [class.dot-used]="i <= compteurTentatives"
+          [class.dot-left]="i > compteurTentatives">
+        </span>
+      </div>
+    </div>
+
+    <!-- Input section -->
+    <div class="input-section" *ngIf="!jeuTermine">
+      <input type="number" [(ngModel)]="nombreSaisi" placeholder="?" [disabled]="jeuTermine" />
+      <button (click)="verifierNombre()" [disabled]="jeuTermine">
+        <span class="btn-icon">🔍</span> Vérifier
+      </button>
+    </div>
+
+    <!-- Message -->
+    <div *ngIf="message" [class]="'message ' + messageClass">
+      <span class="msg-icon">
+        <ng-container [ngSwitch]="messageClass">
+          <span *ngSwitchCase="'correct'">🎉</span>
+          <span *ngSwitchCase="'gameover'">💀</span>
+          <span *ngSwitchCase="'warning'">⚠️</span>
+          <span *ngSwitchDefault>🎯</span>
+        </ng-container>
+      </span>
+      {{message}}
+    </div>
+
+    <!-- Stats -->
+    <div class="stats" *ngIf="compteurTentatives > 0">
+      <span class="stats-icon">📊</span> Tentatives utilisées : <strong>{{compteurTentatives}}</strong>
+    </div>
+
+    <!-- Restart -->
+    <button *ngIf="jeuTermine" (click)="recommencer()" class="btn-restart">
+      <span>🔄</span> Recommencer
     </button>
-  </div>
 
-  <div *ngIf="message" [class]="'message ' + messageClass">
-    {{message}}
   </div>
-
-  <div class="stats" *ngIf="compteurTentatives > 0">
-    <p>Tentatives utilisées: {{compteurTentatives}}</p>
-  </div>
-
-  <button *ngIf="jeuTermine" (click)="recommencer()" class="btn-restart">
-    Recommencer
-  </button>
 </div>
