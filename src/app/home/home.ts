@@ -49,4 +49,8 @@ gotojeu(): void {
 gotopipes(): void {
   this.router.navigate(['pipes']);
 }
+
+gotoweather(): void {
+  this.router.navigate(['weather']);
+}
 }

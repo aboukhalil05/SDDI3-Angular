@@ -1,0 +1,12 @@
+<div class="weather-container" *ngIf="weatherData">
+  <h2>Météo - {{ country }}</h2><img src="https://flagsapi.com/FR/flat/64.png">
+  <div class="weather-info">
+    <p><strong>Température:</strong> {{ temp }}°C</p>
+    <p><strong>Pression:</strong> {{ pres }} hPa</p>
+    <p><strong>Humidité:</strong> {{ hum }}%</p>
+  </div>
+</div>
+<div *ngIf="!weatherData">
+  <p>Chargement des données météo...</p>
+</div>
+
