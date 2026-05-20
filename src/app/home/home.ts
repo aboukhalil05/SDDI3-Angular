@@ -57,6 +57,9 @@ gotoweather(): void {
 gotogestiondesetudiants(): void {
   this.router.navigate(['gestion-des-etudiants']);
 }
+gotoTpservice(): void {
+  this.router.navigate(['tpservice']);
+}
 
 gotoforms(): void {
   this.router.navigate(['forms']);

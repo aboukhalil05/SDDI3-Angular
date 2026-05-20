@@ -1,0 +1,115 @@
+<div style="padding-left:20px">
+
+  <h2>Etudiant Form</h2>
+
+  <table style="width:80%;">
+
+    <tr>
+      <td>Nom Etudiant</td>
+
+      <td>
+        <input
+          type="text"
+          name="nom"
+          [(ngModel)]="model.nom">
+      </td>
+    </tr>
+
+    <tr>
+      <td>Age</td>
+
+      <td>
+        <input
+          type="number"
+          name="age"
+          [(ngModel)]="model.age">
+      </td>
+    </tr>
+
+    <tr>
+      <td>Ville</td>
+
+      <td>
+        <input
+          type="text"
+          name="ville"
+          [(ngModel)]="model.ville">
+      </td>
+    </tr>
+
+    <tr>
+
+      <td></td>
+
+      <td>
+
+        <input
+          type="button"
+          value="Submit"
+          (click)="submit()">
+
+        <input
+          type="button"
+          value="Reset"
+          (click)="reset()">
+
+      </td>
+
+    </tr>
+
+  </table>
+
+  <h3>Détails étudiant</h3>
+
+  <div class="ibox-content">
+
+    <div class="ibox-table">
+
+      <div class="table-responsive">
+
+        <table
+          class="responsive-table table-striped table-bordered table-hover">
+
+          <thead>
+
+            <tr>
+
+              <th style="width:40%;">
+                Nom étudiant
+              </th>
+
+              <th style="width:15%;">
+                Age
+              </th>
+
+              <th style="width:25%;">
+                Ville
+              </th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr *ngFor="let item of esource">
+
+              <td>{{item.nom}}</td>
+
+              <td>{{item.age}}</td>
+
+              <td>{{item.ville}}</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
