@@ -1,0 +1,30 @@
+<div class="list-container">
+  <h3>Liste des étudiants</h3>
+
+  <div *ngIf="etudiants.length; else aucunEtudiant">
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Date de naissance</th>
+          <th>Email</th>
+          <th>Téléphone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let etudiant of etudiants">
+          <td>{{ etudiant.nom }}</td>
+          <td>{{ etudiant.prenom }}</td>
+          <td>{{ etudiant.dateNaissance }}</td>
+          <td>{{ etudiant.email }}</td>
+          <td>{{ etudiant.telephone }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #aucunEtudiant>
+    <p>Aucun étudiant enregistré.</p>
+  </ng-template>
+</div>

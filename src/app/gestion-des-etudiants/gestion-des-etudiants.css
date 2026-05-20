@@ -1,0 +1,62 @@
+.gestion-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.gestion-form {
+  display: grid;
+  gap: 16px;
+}
+
+.field-row {
+  display: grid;
+  gap: 6px;
+}
+
+.field-row label {
+  font-weight: 600;
+}
+
+.field-row input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.button-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"] {
+  background-color: #1976d2;
+  color: #fff;
+}
+
+button[type="button"] {
+  background-color: #f0f0f0;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.error {
+  color: #c62828;
+  font-size: 0.9rem;
+}
+
+.success {
+  margin-top: 16px;
+  color: #2e7d32;
+  font-weight: 600;
+}

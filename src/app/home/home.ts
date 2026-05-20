@@ -54,6 +54,10 @@ gotoweather(): void {
   this.router.navigate(['weather']);
 }
 
+gotogestiondesetudiants(): void {
+  this.router.navigate(['gestion-des-etudiants']);
+}
+
 gotoforms(): void {
   this.router.navigate(['forms']);
 }
