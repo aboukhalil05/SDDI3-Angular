@@ -53,4 +53,8 @@ gotopipes(): void {
 gotoweather(): void {
   this.router.navigate(['weather']);
 }
+
+gotoforms(): void {
+  this.router.navigate(['forms']);
+}
 }

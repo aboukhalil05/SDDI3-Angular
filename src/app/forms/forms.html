@@ -1,0 +1,129 @@
+<h2>Reactive Form Module</h2>
+
+<div>
+
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="enregistrerUtilisateur()">
+
+    <table
+      style="width:60%;"
+      cellpadding="5"
+      cellspacing="5">
+
+      <!-- USERNAME -->
+
+      <tr>
+
+        <td style="width:40%;">
+          <label for="username">
+            User Name
+          </label>
+        </td>
+
+        <td style="width:60%;">
+
+          <input
+            type="text"
+            id="username"
+            [formControl]="username">
+
+          <div
+            [hidden]="username.valid || username.untouched"
+            class="error">
+
+            <div
+              [hidden]="!username.hasError('minlength')">
+
+              Username can not be shorter than 5 characters.
+
+            </div>
+
+            <div
+              [hidden]="!username.hasError('required')">
+
+              Username is required.
+
+            </div>
+
+          </div>
+
+        </td>
+
+      </tr>
+
+      <!-- PASSWORD -->
+
+      <tr>
+
+        <td style="width:40%;">
+          <label for="password">
+            Password
+          </label>
+        </td>
+
+        <td style="width:60%;">
+
+          <input
+            type="password"
+            id="password"
+            [formControl]="password">
+
+          <div
+            [hidden]="password.valid || password.untouched"
+            class="error">
+
+            <div
+              [hidden]="!password.hasError('required')">
+
+              The password is required.
+
+            </div>
+
+            <div
+              [hidden]="!password.hasError('needsExclamation')">
+
+              The password must have an exclamation mark!
+
+            </div>
+
+          </div>
+
+        </td>
+
+      </tr>
+
+      <!-- BUTTON -->
+
+      <tr>
+
+        <td></td>
+
+        <td>
+
+          <button
+            type="submit"
+            [disabled]="!loginForm.valid">
+
+            Log In
+
+          </button>
+
+        </td>
+
+      </tr>
+
+    </table>
+
+  </form>
+
+  <div *ngIf="affichageMessage">
+
+    <h3>
+      Thanks You {{formData.username}}
+      for registration
+    </h3>
+
+  </div>
+
+</div>

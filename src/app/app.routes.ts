@@ -4,6 +4,7 @@ import { Calculs } from './calculs/calculs';
 import { Jeu } from './jeu/jeu';
 import { PipesDemoComponent } from './pipes/pipes-demo';
 import { Weather } from './weather/weather';
+import { Forms } from './forms/forms';
 
 export const routes: Routes = [
     { path: 'home', component: Home },
@@ -11,7 +12,7 @@ export const routes: Routes = [
     { path: 'jeu', component: Jeu },
     { path: 'weather', component: Weather },
     { path: 'pipes', component: PipesDemoComponent },
+    { path: 'forms', component: Forms },
 
-    
     { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
