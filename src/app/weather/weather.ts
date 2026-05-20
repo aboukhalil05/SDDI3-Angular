@@ -39,41 +39,57 @@ export class Weather {
 */
 
 import { Component, ChangeDetectorRef } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Weather as WeatherService } from '../services/weather';
 
 @Component({
   selector: 'app-weather',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './weather.html',
   styleUrl: './weather.css',
 })
 export class Weather {
- country: any;
- temp: any;
- pres: any;
- hum: any;
- weatherData: any;
+  city = '';
+  country: string | null = null;
+  temp: number | null = null;
+  pres: number | null = null;
+  hum: number | null = null;
+  weatherData: any = null;
+  flagUrl = '';
+  errorMessage: string | null = null;
 
- constructor(private serv: WeatherService, private cdr: ChangeDetectorRef){
-  this.getData();
- }
- getData():void {
-  
-  this.serv.getWeatherData().subscribe(
-  (response: any) => {
-    this.weatherData = response;
-    this.country = response.sys.country;
-    this.temp = response.main.temp;
-    this.pres = response.main.pressure;
-    this.hum = response.main.humidity;
-    console.log('Données reçues:', this.weatherData);
-    this.cdr.markForCheck();
-  },
-  (error: any) => {
-    console.error('Erreur:', error);
+  constructor(private serv: WeatherService, private cdr: ChangeDetectorRef) {}
+
+  search(): void {
+    const query = this.city?.trim();
+    if (!query) {
+      this.errorMessage = 'Veuillez saisir une ville.';
+      return;
+    }
+
+    this.errorMessage = null;
+    this.weatherData = null;
+    this.getData(query);
   }
-  );
- }
+
+  getData(city: string): void {
+    this.serv.getWeatherData(city).subscribe(
+      (response: any) => {
+        this.weatherData = response;
+        this.country = response.sys?.country || null;
+        this.temp = response.main?.temp || null;
+        this.pres = response.main?.pressure || null;
+        this.hum = response.main?.humidity || null;
+        this.flagUrl = this.country ? `https://flagsapi.com/${this.country}/flat/64.png` : '';
+        console.log('Données reçues:', this.weatherData);
+        this.cdr.markForCheck();
+      },
+      (error: any) => {
+        this.errorMessage = 'Impossible de récupérer la météo pour cette ville.';
+        console.error('Erreur:', error);
+        this.cdr.markForCheck();
+      }
+    );
+  }
 }

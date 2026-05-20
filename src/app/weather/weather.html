@@ -1,12 +1,31 @@
+<div class="weather-search">
+  <label for="city">Ville :</label>
+  <input
+    id="city"
+    type="text"
+    [(ngModel)]="city"
+    placeholder="Entrez une ville, par ex. Paris"
+    autocomplete="off"
+    (keyup.enter)="search()"
+  />
+  <button type="button" (click)="search()">Rechercher</button>
+</div>
+
+<div class="error" *ngIf="errorMessage">
+  <p>{{ errorMessage }}</p>
+</div>
+
 <div class="weather-container" *ngIf="weatherData">
-  <h2>Météo - {{ country }}</h2><img src="https://flagsapi.com/FR/flat/64.png">
+  <h2>Météo - {{ weatherData.name }}, {{ country }}</h2>
+  <img *ngIf="flagUrl" [src]="flagUrl" alt="Drapeau {{ country }}" />
   <div class="weather-info">
     <p><strong>Température:</strong> {{ temp }}°C</p>
     <p><strong>Pression:</strong> {{ pres }} hPa</p>
     <p><strong>Humidité:</strong> {{ hum }}%</p>
   </div>
 </div>
-<div *ngIf="!weatherData">
-  <p>Chargement des données météo...</p>
+
+<div *ngIf="!weatherData && !errorMessage">
+  <p>Entrez une ville et cliquez sur Rechercher pour voir sa météo.</p>
 </div>
 
